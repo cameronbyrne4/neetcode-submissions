@@ -1,0 +1,19 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        subset = []
+
+        def dfs():
+            if len(subset) == len(nums):
+                result.append(subset.copy())
+                return
+            
+            for i in range(len(nums)):
+                if nums[i] in subset:
+                    continue
+                subset.append(nums[i])
+                dfs()
+                subset.pop()
+
+        dfs()
+        return result
